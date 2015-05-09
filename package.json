@@ -1,0 +1,34 @@
+{
+  "name": "loopback-connector-cassandra",
+  "version": "0.0.1",
+  "description": "Cassandra connector for LoopBack",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "loopback-connector": "^1.2.1",
+    "debug": "^2.1.3"
+  },
+  "devDependencies": {
+    "loopback-datasource-juggler": "^2.26.4",
+    "mocha": "^2.2.4",
+    "should": "^6.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peerbelt/loopback-connector-cassandra.git"
+  },
+  "keywords": [
+    "loopback",
+    "connector",
+    "component",
+    "cassandra"
+  ],
+  "author": "Peerbelt <info@peerbelt.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peerbelt/loopback-connector-cassandra/issues"
+  },
+  "homepage": "https://github.com/peerbelt/loopback-connector-cassandra"
+}
