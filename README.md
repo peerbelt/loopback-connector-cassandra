@@ -2,10 +2,11 @@
 
 **NOTE: THIS MODULE IS PRE-RELEASE **
 
-Redis connector for LoopBack.
+Cassandra connector for LoopBack that uses an data agnostic storage.
 
 ## Usage
 
+TBD
 
 ## Running tests
 
