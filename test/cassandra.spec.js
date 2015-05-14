@@ -58,7 +58,7 @@ describe('cassandra', function () {
     });
   });
 
-  it.only('should allow array or object', function (done) {
+  it('should allow array or object', function (done) {
     Post.create({title: 'a', content: 'AAA', comments: ['1', '2'],
       history: {a: 1, b: 'b'}}, function(err, post) {
 
@@ -138,7 +138,7 @@ describe('cassandra', function () {
   });
 
   it('updateOrCreate should create a new instance if it does not exist', function (done) {
-    var post = {id: 123, title: 'a', content: 'AAA'};
+    var post = {id: "123", title: 'a', content: 'AAA'};
     Post.updateOrCreate(post, function (err, p) {
       should.not.exist(err);
       p.title.should.be.equal(post.title);
@@ -266,11 +266,19 @@ describe('cassandra', function () {
     });
 
   it('should allow to find using like', function (done) {
-    Post.create({title: 'My Post', content: 'Hello'}, function (err, post) {
-      Post.find({where: {title: {like: 'M%st'}}}, function (err, posts) {
+    Post.create({title: 'Newcomer\'s Post', content: 'Hello'}, function (err, post) {
+      should.not.exist(err);
+      Post.create({title: 'My Post', content: 'Hello'}, function (err, post) {
         should.not.exist(err);
-        posts.should.have.property('length', 1);
-        done();
+        Post.find({where: {title: {like: 'M%st'}}}, function (err, posts) {
+          should.not.exist(err);
+          posts.should.have.property('length', 1);
+          Post.find({where: {title: {like: 'N%st'}}}, function (err, posts) {
+            should.not.exist(err);
+            posts.should.have.property('length', 1);
+            done();
+          });
+        });
       });
     });
   });
@@ -286,11 +294,17 @@ describe('cassandra', function () {
   });
 
   it('should allow to find using nlike', function (done) {
-    Post.create({title: 'My Post', content: 'Hello'}, function (err, post) {
-      Post.find({where: {title: {nlike: 'M%st'}}}, function (err, posts) {
-        should.not.exist(err);
-        posts.should.have.property('length', 0);
-        done();
+    Post.create({title: 'Newcommer\'s Post', content: 'Hello'}, function (err, post) {
+      Post.create({title: 'My Post', content: 'Hello'}, function (err, post) {
+        Post.find({where: {title: {nlike: 'M%st'}}}, function (err, posts) {
+          should.not.exist(err);
+          posts.should.have.property('length', 1);
+          Post.find({where: {title: {nlike: '%st'}}}, function (err, posts) {
+            should.not.exist(err);
+            posts.should.have.property('length', 0);
+            done();
+          });
+        });
       });
     });
   });

@@ -9,12 +9,12 @@ var config = {}; // require('rc')('loopback', {test: {mysql: {}}}).test.mysql;
 global.getConfig = function (options) {
 
   var dbConf = {
-    host: config.host || 'localhost',
-    port: config.port || 3306,
-    keyspace: 'connector-test',
-    username: config.username,
-    password: config.password,
-    createKeyspace: true
+    "contactPoints": [ process.env.CASSANDRA_PORT_9042_TCP_ADDR || process.env.CASSANDRA_HOST || 'localhost' ],
+    protocolOptions: { port: process.env.CASSANDRA_PORT_9042_TCP_PORT || process.env.CASSANDRA_PORT || 9042 },
+    "keyspace": process.env.CASSANDRA_KEYSPACE || "console",
+    queryOptions: {
+      fetchSize: 1
+    }
   };
 
   if (options) {
