@@ -2,7 +2,7 @@
 
 **NOTE: THIS MODULE IS PRE-RELEASE **
 
-Cassandra connector for LoopBack that uses an data agnostic storage.
+Cassandra connector for LoopBack that uses a data agnostic storage.
 
 ## Usage
 
